@@ -1,0 +1,66 @@
+= API
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 3
+:toc-title:
+
+== 공통
+
+=== 결과 코드
+
+|===
+|코드|코드명
+
+|1|성공
+|0|오류
+|===
+
+=== 에러 코드
+
+|===
+|코드|코드명
+
+|98|이미지 확장자 오류
+|99|잘못된 파라미터
+|===
+
+== 사용자 정보 관리
+
+=== 사용자 상세 조회
+
+.request
+include::{snippets}/get-user-detail/http-request.adoc[]
+include::{snippets}/get-user-detail/path-parameters.adoc[]
+.response
+include::{snippets}/get-user-detail/response-body.adoc[]
+include::{snippets}/get-user-detail/response-fields.adoc[]
+
+=== 사용자 등록
+
+.request
+include::{snippets}/insert-user/http-request.adoc[]
+include::{snippets}/insert-user/request-fields.adoc[]
+.response
+include::{snippets}/insert-user/response-body.adoc[]
+include::{snippets}/insert-user/response-fields.adoc[]
+
+=== 사용자 이미지 등록
+
+.request
+include::{snippets}/insert-user-image/http-request.adoc[]
+include::{snippets}/insert-user-image/path-parameters.adoc[]
+include::{snippets}/insert-user-image/request-parameters.adoc[]
+.response
+include::{snippets}/insert-user-image/response-body.adoc[]
+include::{snippets}/insert-user-image/response-fields.adoc[]
+
+=== 사용자 삭제
+
+.request
+include::{snippets}/delete-user/http-request.adoc[]
+include::{snippets}/delete-user/path-parameters.adoc[]
+.response
+include::{snippets}/delete-user/response-body.adoc[]
+include::{snippets}/delete-user/response-fields.adoc[]

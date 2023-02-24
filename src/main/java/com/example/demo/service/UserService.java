@@ -1,8 +1,8 @@
 package com.example.demo.service;
 
 import com.example.demo.domain.User;
-import com.example.demo.dto.UserDto;
 import com.example.demo.dto.UserDto.InsertUserRequest;
+import com.example.demo.dto.UserDto.UserResponse;
 import com.example.demo.exception.ImageExtensionException;
 import com.example.demo.exception.OptionalObjectNullException;
 import com.example.demo.model.BasicResponse;
@@ -53,7 +53,7 @@ public class UserService {
 
     public BasicResponse getUserDetail(String userId) {
         User user = userRepository.findByTokenAndImgPathIsNotNull(userId).orElseThrow(OptionalObjectNullException::new);
-        return new CommonSuccessResponse<>(new UserDto.UserResponse(user));
+        return new CommonSuccessResponse<>(new UserResponse(user));
     }
 
     @Transactional
