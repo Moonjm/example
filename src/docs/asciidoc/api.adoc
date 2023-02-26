@@ -56,6 +56,14 @@ include::{snippets}/insert-user-image/request-parameters.adoc[]
 include::{snippets}/insert-user-image/response-body.adoc[]
 include::{snippets}/insert-user-image/response-fields.adoc[]
 
+=== 사용자 이미지 조회
+
+.request
+include::{snippets}/get-user-image/http-request.adoc[]
+include::{snippets}/get-user-image/path-parameters.adoc[]
+.response
+include::{snippets}/get-user-image/response-body.adoc[]
+
 === 사용자 삭제
 
 .request

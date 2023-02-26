@@ -15,7 +15,9 @@ import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.restdocs.RestDocumentationContextProvider;
 import org.springframework.restdocs.RestDocumentationExtension;
 import org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders;
+import org.springframework.restdocs.operation.preprocess.ContentModifyingOperationPreprocessor;
 import org.springframework.restdocs.operation.preprocess.OperationRequestPreprocessor;
+import org.springframework.restdocs.operation.preprocess.Preprocessors;
 import org.springframework.restdocs.payload.JsonFieldType;
 import org.springframework.restdocs.snippet.Attributes;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -57,6 +59,29 @@ class UserControllerTest {
                 .apply(documentationConfiguration(restDocumentation))
                 .addFilters(new CharacterEncodingFilter("UTF-8", true)) // 필터 추가
                 .alwaysDo(print()).build();
+    }
+
+    @Test
+    @DisplayName("사용자 이미지 조회")
+    void getUserImageTest() {
+        try {
+            this.mockMvc.perform(
+                            RestDocumentationRequestBuilders.get("/v1/users/{userId}/image", "user_70T0yV9lJKdXTGU")
+                                    .contentType(MediaType.APPLICATION_JSON)
+                                    .accept(MediaType.APPLICATION_JSON)
+                    )
+                    .andDo(print())
+                    .andExpect(status().isOk())
+                    .andDo(document("get-user-image",
+                            customPreProcessorRequest(),
+                            Preprocessors.preprocessResponse(new ContentModifyingOperationPreprocessor((originalContent, contentType) -> "<< IMAGE >>".getBytes(StandardCharsets.UTF_8))),
+                            pathParameters(
+                                    parameterWithName("userId").attributes(new Attributes.Attribute("type", "String")).description("사용자 아이디")
+                            )
+                    ));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Test

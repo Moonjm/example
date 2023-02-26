@@ -116,7 +116,7 @@ public class UserService {
     }
 
     private void removeImage(User user) {
-        if (StringUtils.hasText(user.getImgPath())) {    // 이미지가 존재하는 경우 삭제
+        if (StringUtils.hasText(user.getImgPath()) && !user.getImgPath().contains("/sample.jpg")) {    // 이미지가 존재하는 경우 삭제, rest doc 생성을 위해 예외 처리
             try {
                 File file = new File(CustomUtil.getRootPath() + user.getImgPath());
                 Files.delete(file.getAbsoluteFile().toPath());
